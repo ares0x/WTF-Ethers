@@ -40,7 +40,7 @@ tags:
 
 ### 连接公开节点
 
-这里，我们用[Chainlist](https://chainlist.org/)上的公开节点作为例子。在找到合适的rpc之后，可以利用`ethers.JsonRpcProvider()`方法来创建`Provider`变量，该方法以节点服务的`url`链接作为参数。
+这里，我们用 [Chainlist](https://chainlist.org/) 上的公开节点作为例子。在找到合适的rpc之后，可以利用`ethers.JsonRpcProvider()`方法来创建`Provider`变量，该方法以节点服务的`url`链接作为参数。
 
 在下面这个例子中，我们分别创建连接到`ETH`主网和`Sepolia`测试网的`provider`：
 

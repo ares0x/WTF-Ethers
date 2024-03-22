@@ -21,7 +21,7 @@ tags:
 
 -----
 
-这一讲，我们会介绍`ethers.js`库，javascript在线编辑器`playcode`，并且我们会写第一个程序`HelloVitalik`：查询Vitalik的`ETH`余额，并输出在`console`中。
+这一讲，我们会介绍`ethers.js`库，JavaScript 在线编辑器`playcode`，并且我们会写第一个程序`HelloVitalik`：查询Vitalik的`ETH`余额，并输出在`console`中。
 
 > 教程使用 ethers.js 最新的 v6 版本，与 v5 改动较大。v5 版本教程，见 [链接](https://github.com/WTFAcademy/WTF-Ethers/tree/wtf-ethers-v5)。
 
@@ -51,11 +51,11 @@ npm install ethers --save
 
 ![playcode](./img/1-2.png)
 
-[playcode](https://playcode.io/)是一个在线编译`javascript`的平台，你不需要配置`Nodejs`就可以运行`.js`文件，非常方便。且要比更知名的`codesandbox`快一百倍。
+[playcode](https://playcode.io/) 是一个在线编译`JavaScript`的平台，你不需要配置`Nodejs`就可以运行`.js`文件，非常方便。且要比更知名的`codesandbox`快一百倍。
 
 ![playcode](./img/1-3.png)
 
-这一讲，我们将用`playcode`做演示。你需要在官网注册一个免费账号，然后点击`OPEN PLAYGROUND`以`Javascript`模版创建一个新项目，然后将代码写在自动生成的`script.js`中即可。很多时候，`playcode`并不能稳定的使用`ethers`，因此我们推荐使用VScode。
+这一讲，我们将用`playcode`做演示。你需要在官网注册一个免费账号，然后点击`OPEN PLAYGROUND`以`JavaScript`模版创建一个新项目，然后将代码写在自动生成的`script.js`中即可。很多时候，`playcode`并不能稳定的使用`ethers`，因此我们推荐使用VScode。
 
 ## HelloVitalik
 
@@ -104,7 +104,7 @@ const provider = new ethers.JsonRpcProvider(ALCHEMY_MAINNET_URL)
 
 ### 3. 声明`async`函数
 
-由于和区块链交互不是实时的我们需要用到js的`async/await`语法糖。每次和链交互的调用需要用到`await`，再把这些用`async`函数包裹起来，最后再调用这个函数。
+由于和区块链交互不是实时的我们需要用到 js 的`async/await`语法糖。每次和链交互的调用需要用到`await`，再把这些用`async`函数包裹起来，最后再调用这个函数。
 ```javascript
 const main = async () => {
     //...
@@ -113,7 +113,7 @@ main()
 ```
 ### 4. 获取Vitalik地址的`ETH`余额
 
-我们可以利用`Provider`类的`getBalance()`函数来查询某个地址的`ETH`余额。由于`ethers`原生支持`ENS`域名，我们不需要知道具体地址，用`ENS`域名`vitalik.eth`就可以查询到以太坊创始人豚林-vitalik的余额。
+我们可以利用`Provider`类的`getBalance()`函数来查询某个地址的`ETH`余额。由于`ethers`原生支持`ENS`域名，我们不需要知道具体地址，用`ENS`域名`vitalik.eth`就可以查询到以太坊创始人buterin-vitalik 的余额。
 
 ```javascript
 const balance = await provider.getBalance(`vitalik.eth`);
@@ -126,14 +126,23 @@ const balance = await provider.getBalance(`vitalik.eth`);
 ```javascript
     console.log(`ETH Balance of vitalik: ${ethers.formatEther(balance)} ETH`);
 ```
-如果你使用的是vscode开发工具的话，你需要在vscode控制台输入以下命令
+如果你使用的是 vscode 开发工具的话，你需要在 vscode 控制台输入以下命令
 ```shell
 node 01_HelloVitalik/HelloVitalik.js
 ```
 这样，你就能在控制台中看到Vitalik的`ETH`余额了：`1951 ETH`。当然这不是Vitalik的全部持仓，他有多个钱包，`vitalik.eth`应该只是他用的比较频繁的一个热钱包。
+注意：若你在本地新建了项目并执行相同的代码可能会碰到以下的错误提示
+```javascript
+Warning: To load an ES module, set "type": "module" in the package.json or use the .mjs extension.
+(Use `node --trace-warnings ...` to show where the warning was created)
+```
+你可以通过在`package.json`的配置中添加一行
+```json
+  "type" : "module",
+```
+来解决该问题。
 
 ![在控制台打印Vitalik余额](./img/1-5.png)
-
 
 ## 总结
 
